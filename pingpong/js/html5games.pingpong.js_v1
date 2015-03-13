@@ -1,0 +1,69 @@
+// O bagulhinho $() faz com que o código só seja executado após o elemento da 
+// página ser criado, se não colocar este bagulhinho corre o risco do elemento não ter 
+// sido criado e o javascript dar pau
+
+// $(function(){
+//     $("#raqueteB").css("top", "20px");
+//     $("#raqueteA").css("top", "70px");
+//     $("#mesa").css({
+//     "background-color":"#000000",
+//     "width": "600px"
+//     })
+// });
+
+// Desta forma que está escrito o código o pressionamento de duas teclas 
+// simultâneas é impossível
+
+var KEY = {
+    UP: 38,
+    DOWN: 40,
+    W: 87,
+    S: 83,
+    D: 68
+}
+
+$(function(){
+    // listen to the key down event
+    $(document).keydown(function(e){        
+        
+        switch(e.which){
+            case KEY.UP: // arrow-up
+                // get the current raquete B's top value in Int type
+                var topu = parseInt($("#raqueteB").css("top"));
+                
+                if( topu > 0 )
+                    // move the raquete B up 5 pixels
+                    $("#raqueteB").css("top",topu-5);
+                
+                break;
+                
+            case KEY.DOWN: // arrow-down
+                var topd = parseInt($("#raqueteB").css("top"));
+                
+                if( topd < 130 )
+                    // move the raquete B down 5 pixels
+                    $("#raqueteB").css("top",topd+5);
+                
+                break;
+
+            case KEY.W: // w
+                var topw = parseInt($("#raqueteA").css("top"));
+                
+                if( topw > 0 )
+                    // move the raquete A up 5 pixels
+                    $("#raqueteA").css("top",topw-5);
+                
+                break;
+                
+            case KEY.S: // s
+                var tops = parseInt($("#raqueteA").css("top"));
+                
+                if( tops < 130 )
+                    // move the raquete A drown 5 pixels
+                    $("#raqueteA").css("top",tops+5);
+                
+                break;
+        }
+        
+    });
+});
